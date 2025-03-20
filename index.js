@@ -27,6 +27,14 @@ app.locals.STRIPE_API_KEY = STRIPE_API_KEY;
 console.log("Using Stripe Secret Key from .env");
 console.log("Using Stripe Public Key from .env");
 
+// Home Route
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "AWS Server is running successfully! 🚀",
+  });
+});
+
 // Routes
 app.use("/api/v1/payment", stripeRoutes);
 
