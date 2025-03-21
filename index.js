@@ -14,8 +14,16 @@ const STRIPE_API_KEY = process.env.STRIPE_API_KEY;
 // Initialize express app
 const app = express();
 
+// ✅ FIX: Allow only your frontend domain
+app.use(
+  cors({
+    origin: "https://4kstreamuk.com", // Allow only your frontend domain
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true, // Allow cookies/auth headers if needed
+  })
+);
+
 // Middleware
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
