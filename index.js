@@ -17,12 +17,17 @@ const app = express();
 // ✅ FIX: Allow only your frontend domain
 app.use(
   cors({
-    origin: "https://4kstreamuk.com", // Allow frontend
-    methods: "GET, POST, PUT, DELETE, OPTIONS",
-    allowedHeaders: "Content-Type",
-    credentials: true,
+    origin: ["https://4kstreamuk.com", "http://localhost:5173"], // ✅ Allow both production & local dev
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // ✅ Allow cookies/sessions
   })
 );
+
+
+// ✅ Ensure Express handles OPTIONS requests
+app.options("*", cors());
+
 
 
 
